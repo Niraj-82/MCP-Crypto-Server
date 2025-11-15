@@ -1,130 +1,211 @@
-Advanced MCP Crypto Server
-Real-Time | Historical | Indicators | Portfolio | Streaming | CCXT | FastAPI
-
+MCP Crypto Server — README
 📌 Overview
 
-The Advanced MCP Crypto Server is a fully asynchronous, production-ready API platform designed to retrieve, process, and analyze cryptocurrency market data using CCXT and FastAPI.
+The MCP Crypto Server is a fully asynchronous, production-ready backend service designed to retrieve and analyze cryptocurrency market data from 70+ exchanges using CCXT.
+It supports:
 
-This enhanced version includes:
+Real-time market data
 
-🔥 Real-time & historical crypto data
+Historical OHLCV data
 
-📊 Technical indicators (SMA, EMA)
+Technical indicators
 
-💼 Portfolio analytics engine
+Portfolio analytics
 
-🔌 WebSocket streaming prototype
+Streaming prototype
 
-⚡ Extended caching + rate limiting
+Caching, validation, retry logic, and rate limiting
 
-🛡 Retry logic, validations & error handling
+Designed for AI agents, trading bots, analytics dashboards, and financial research tools.
 
-Ideal for trading bots, AI agents, analytics dashboards, market research tools, and real-time financial systems.
+🧠 Approach
 
-✨ Key Features
-🔰 Core Features
+This project was built using a modular, scalable, and production-inspired architecture:
 
-Real-time ticker, order book & trade history
+✔ 1. Layered Architecture
 
-Historical OHLCV with timeframe support
+Routers → Handle API endpoints
 
-Exchange & symbol validation
+Services → Business logic (data fetching, caching, validation)
 
-In-memory TTL caching
+Models → Request/response schemas
 
-FastAPI async architecture
+Analytics → Indicators + portfolio logic
 
-CCXT integration with 70+ exchanges
+Streaming → Real-time data prototype
+
+Config → Environment control
+
+This separation ensures maintainability and easy extensibility.
+
+✔ 2. Asynchronous Design
+
+All API functions use async/await, ensuring:
+
+High throughput
+
+Non-blocking execution
+
+Efficient handling of multiple clients
+
+CCXT’s async_support module is used for all exchange operations.
+
+✔ 3. Reliability First
+
+Market APIs fail often, so the server includes:
 
 Retry logic (3 attempts, exponential backoff)
 
-🆕 New Enhancements
-📊 Technical Indicators
+Global error handlers
 
-SMA (Simple Moving Average)
+Validation for exchange/symbol correctness
 
-EMA (Exponential Moving Average)
+Structured logging for debugging
 
-Easily extendable (RSI, MACD, Bollinger Bands, etc.)
+✔ 4. Performance Optimizations
 
-💼 Portfolio Analytics
+To avoid API rate-limit issues and reduce latency:
 
-Real-time portfolio valuation
+TTL-based in-memory caching
 
-Multi-token support
+Rate limiter
 
-Integrates with live market prices
+Reuse of CCXT exchange instances
 
-📡 WebSocket Streaming
+Lighter responses and faster execution
 
-Simulated real-time feed
+✔ 5. Expandability
 
-Ready for CCXT Pro upgrade
+The project is designed so new indicators, analytics modules, or streaming features can be added with minimal changes.
 
-Useful for dashboards & monitoring tools
+🛠 Setup Instructions
+1️⃣ Clone the repository
+git clone https://github.com/Niraj-82/MCP-Crypto-Server.git
+cd MCP-Crypto-Server
 
-⚡ Performance Upgrades
-
-Multi-layer caching
-
-Rate limiting utility
-
-Faster repeated requests
-
-Lower exchange API load
-
-📡 API Endpoints
-🟦 Real-Time Endpoints
-Method	Endpoint	Description
-POST	/api/v1/real_time/ticker	Live price data
-POST	/api/v1/real_time/order_book	Bid/ask levels
-POST	/api/v1/real_time/trades	Recent trades
-🟪 Historical Endpoint
-Method	Endpoint	Description
-POST	/api/v1/historical/ohlcv	OHLCV candlesticks
-🟩 Utility Endpoints
-Method	Endpoint	Purpose
-GET	/api/v1/utils/exchanges	List all exchanges
-GET	/api/v1/utils/symbols/{exchange}	List symbols
-POST	/api/v1/utils/validate	Validate exchange/symbol pair
-GET	/api/v1/utils/status	Health check
-⚙️ Installation
-git clone <your-repo-url>
-cd mcp-crypto-server
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
-🚀 Running the Server
+3️⃣ Run the server
 uvicorn server:app --reload
 
+4️⃣ Open API documentation
 
-Visit API docs:
+Visit:
 👉 http://localhost:8000/docs
 
-🧪 Running Tests
+📂 Project Structure
+📦 MCP-Crypto-Server
+│
+├── server.py                       # Main FastAPI app
+│
+├── routers/
+│     ├── real_time.py              # Ticker, orderbook, trades
+│     ├── historical.py             # OHLCV
+│     └── utils.py                  # Exchanges, symbols, validation
+│
+├── services/
+│     ├── exchange_client.py        # CCXT integration
+│     ├── cache_service.py          # Enhanced caching
+│     ├── validation_service.py     # Validation logic
+│     └── rate_limit.py             # Rate limiting (NEW)
+│
+├── analytics/
+│     ├── indicators.py             # SMA/EMA (NEW)
+│     └── portfolio.py              # Portfolio engine (NEW)
+│
+├── realtime/
+│     └── websocket_handler.py      # Streaming prototype (NEW)
+│
+├── models/
+│     ├── request_models.py
+│     └── response_models.py
+│
+└── tests/                          # Test suite
+
+🌐 API Endpoints Summary
+🔵 Real-Time
+Method	Endpoint	Description
+POST	/api/v1/real_time/ticker	Current price
+POST	/api/v1/real_time/order_book	Bids/asks
+POST	/api/v1/real_time/trades	Recent trades
+🟣 Historical
+Method	Endpoint	Description
+POST	/api/v1/historical/ohlcv	Candlestick data
+🟢 Utilities
+Method	Endpoint	Description
+GET	/api/v1/utils/exchanges	Exchange list
+GET	/api/v1/utils/symbols/{ex}	Tradable symbols
+POST	/api/v1/utils/validate	Validate pair
+GET	/api/v1/utils/status	Server health
+📊 New Features Added (Enhancements)
+📌 Technical Indicators
+
+SMA
+
+EMA
+
+Expandable indicator framework
+
+📌 Portfolio Analytics
+
+Total value
+
+Per-asset valuation
+
+Real-time price integration
+
+📌 WebSocket Streaming
+
+Prototype live ticker feed
+
+📌 Extended Caching
+
+Faster performance
+
+Lower API usage
+
+📌 Rate Limiting
+
+Prevents over-calling exchanges
+
+🎯 Assumptions
+
+This project assumes:
+
+User will make reasonable request frequencies
+(Cache and rate limiter handle common cases, but high-frequency bots need CCXT Pro.)
+
+Internet connection is required
+since data comes from external crypto exchanges.
+
+Exchange APIs may fail, so retry logic handles temporary outages.
+
+The server is non-persistent, meaning:
+
+No database
+
+No user accounts
+
+No long-term storage
+(Can be added later.)
+
+Client-side visualization/usage is external to this project.
+
+🧪 Run Tests
 pytest -v
 
-📦 Docker Deployment
+🐳 Docker Deployment
 
-Build the Docker image:
+Build:
 
 docker build -t mcp-crypto-server .
 
 
-Run the container:
+Run:
 
 docker run -p 8000:8000 mcp-crypto-server
 
-🔮 Future Enhancements
+📄 License
 
-WebSocket integration using CCXT Pro
-
-Full TA indicators (RSI, MACD, Bollinger Bands, ATR)
-
-AI prediction endpoint
-
-GraphQL interface
-
-Redis caching layer
-
-User authentication + portfolio storage
-
+MIT License © 2025
