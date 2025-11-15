@@ -1,4 +1,5 @@
 MCP Crypto Server — README
+
 📌 Overview
 
 The MCP Crypto Server is a fully asynchronous, production-ready backend service designed to retrieve and analyze cryptocurrency market data from 70+ exchanges using CCXT.
