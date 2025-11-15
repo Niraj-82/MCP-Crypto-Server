@@ -1,5 +1,6 @@
 MCP Crypto Server — README
 
+
 📌 Overview
 
 The MCP Crypto Server is a fully asynchronous, production-ready backend service designed to retrieve and analyze cryptocurrency market data from 70+ exchanges using CCXT.
@@ -18,6 +19,7 @@ Streaming prototype
 Caching, validation, retry logic, and rate limiting
 
 Designed for AI agents, trading bots, analytics dashboards, and financial research tools.
+
 
 🧠 Approach
 
@@ -79,7 +81,9 @@ Lighter responses and faster execution
 
 The project is designed so new indicators, analytics modules, or streaming features can be added with minimal changes.
 
+
 🛠 Setup Instructions
+
 1️⃣ Clone the repository
 git clone https://github.com/Niraj-82/MCP-Crypto-Server.git
 cd MCP-Crypto-Server
@@ -124,6 +128,7 @@ Visit:
 │
 └── tests/                          # Test suite
 
+
 🌐 API Endpoints Summary
 🔵 Real-Time
 Method	Endpoint	Description
@@ -139,6 +144,7 @@ GET	/api/v1/utils/exchanges	Exchange list
 GET	/api/v1/utils/symbols/{ex}	Tradable symbols
 POST	/api/v1/utils/validate	Validate pair
 GET	/api/v1/utils/status	Server health
+
 📊 New Features Added (Enhancements)
 📌 Technical Indicators
 
@@ -170,6 +176,7 @@ Lower API usage
 
 Prevents over-calling exchanges
 
+
 🎯 Assumptions
 
 This project assumes:
@@ -193,8 +200,10 @@ No long-term storage
 
 Client-side visualization/usage is external to this project.
 
+
 🧪 Run Tests
 pytest -v
+
 
 🐳 Docker Deployment
 
@@ -206,6 +215,7 @@ docker build -t mcp-crypto-server .
 Run:
 
 docker run -p 8000:8000 mcp-crypto-server
+
 
 📄 License
 
