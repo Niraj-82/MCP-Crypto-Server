@@ -108,7 +108,6 @@ Lower exchange API load
 ├── .gitignore
 └── README.md
 
-
 📡 API Endpoints
 🟦 Real-Time Endpoints
 Method	Endpoint	Description
