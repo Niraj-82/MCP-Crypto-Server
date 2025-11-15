@@ -73,42 +73,6 @@ Faster repeated requests
 
 Lower exchange API load
 
-🗂 Project Structure
-
-📦 mcp-crypto-server
-├── analytics/
-│   ├── indicators.py
-│   └── portfolio.py
-├── models/
-│   ├── request_models.py
-│   └── response_models.py
-├── realtime/
-│   └── websocket_handler.py
-├── routers/
-│   ├── historical.py
-│   ├── real_time.py
-│   └── utils.py
-├── services/
-│   ├── cache_service.py
-│   ├── exchange_client.py
-│   ├── metrics.py
-│   ├── rate_limit_service.py
-│   └── validation_service.py
-├── tests/
-│   ├── conftest.py
-│   ├── test_cache.py
-│   ├── test_error_handling.py
-│   ├── test_historical.py
-│   ├── test_metrics.py
-│   ├── test_portfolio.py
-│   └── test_real_time.py
-├── config.py
-├── Dockerfile
-├── requirements.txt
-├── server.py
-├── .gitignore
-└── README.md
-
 📡 API Endpoints
 🟦 Real-Time Endpoints
 Method	Endpoint	Description
