@@ -1,0 +1,1 @@
+exchanges = ["binance", "kraken", "coinbase"]
