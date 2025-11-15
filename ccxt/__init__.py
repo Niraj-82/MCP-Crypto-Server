@@ -1,1 +1,0 @@
-exchanges = ["binance", "kraken", "coinbase"]
