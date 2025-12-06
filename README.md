@@ -216,7 +216,3 @@ Run:
 
 docker run -p 8000:8000 mcp-crypto-server
 
-
-📄 License
-
-MIT License © 2025
